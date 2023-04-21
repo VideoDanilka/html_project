@@ -43,8 +43,24 @@ def save():
         visibility2 = ''
     else:
         visibility2 = 'hidden'
+
+    pointer3 = ''
+    if len(pointers) >= 3:
+        pointer3 = pointers[2]
+        visibility3 = ''
+    else:
+        visibility3 = 'hidden'
+
+    pointer4 = ''
+    if len(pointers) >= 4:
+        pointer4 = pointers[3]
+        visibility4 = ''
+    else:
+        visibility4 = 'hidden'
     return render_template('form2.html', pointer1=pointer1, visibility1=visibility1,
-                           pointer2=pointer2, visibility2=visibility2)
+                           pointer2=pointer2, visibility2=visibility2,
+                           pointer3=pointer3, visibility3=visibility3,
+                           pointer4=pointer4, visibility4=visibility4)
 
 
 if __name__ == '__main__':
