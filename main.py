@@ -6,6 +6,7 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+# Использовать глобальные переменные плохая идея. Следовало сделать класс, и все делать внутри класса.
 pointers = []
 variables = []
 context = {}
@@ -15,12 +16,12 @@ filename = ''
 @app.route('/', methods=['POST', 'GET'])
 def main():
     if request.method == 'GET':
-        file_names = os.listdir('templates1')
+        file_names = os.listdir('tpl')
         return render_template('form1.html', file_names=file_names)
     elif request.method == 'POST':
         global filename
         filename = request.form['file_name']
-        doc = docx.Document(f'templates1/{filename}')
+        doc = docx.Document(f'tpl/{filename}')
         all_paragraphs = doc.paragraphs
         for paragraph in all_paragraphs:
             if '{' in paragraph.text:
@@ -174,7 +175,19 @@ def save():
                            pointer17=pointer17, visibility17=visibility17,
                            pointer18=pointer18, visibility18=visibility18,
                            pointer19=pointer19, visibility19=visibility19,
-                           pointer20=pointer20, visibility20=visibility20)
+                           pointer20=pointer20, visibility20=visibility20,
+                           pointers=pointers)
+    # Обрати внимание, я передал в шаблон ВЕСЬ список, и посмотри, как я его вывел в шаблоне.
+    # Подумай, как переделать код, чтобы не было вот этой копипасты. Ты сам то не задумывался, что это как-то неправильно?
+    # В шаблоне могут быть и циклы, и условия, и все что угодно.
+    # Посмотри вао это https://habr.com/ru/articles/193260/
+
+    # Данные в полях input следует предзаполнить из таблицы в базе!!!
+    # список pointers лучше сделать вот такой структуры:
+    pointer_sample = [
+        {'name': 'ФИО', 'value': 'Вася Пупкин'},
+        {'name': 'дата рождения', 'value': 'из базы!!!'}
+    ]
 
 
 @app.route('/savefile', methods=['GET'])

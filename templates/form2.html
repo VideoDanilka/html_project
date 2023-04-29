@@ -172,6 +172,11 @@
             <input type="text" name="variable20">
         </div>
     </div>
+
+    {% for pointer in pointers %}
+    <p>{{pointer}} name!</p>
+    {% endfor %}
+
     <input type="text" name="file_name" placeholder="Введите имя файла">
     <button type="submit" class="btn btn-primary">Отправить</button>
 </form>
