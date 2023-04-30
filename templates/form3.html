@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form action="/render" class="file" method="post" style="max-width: 450px; margin: auto; background-color: #ffcc00;  border: 1px solid gray; border-radius: 5px;  padding: 10px;">
+        <div class="form-group">
+            <select class="form-control" id="classSelect" name="student_name">
+                {% for i in students_names %}
+                <option>{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+</body>
+</html>
