@@ -10,7 +10,21 @@
           crossorigin="anonymous">
     <title>Title</title>
 </head>
-<body>
+<body class="p-3 m-0 border-0">
+    <form action="/savefile">
+        {% for pointer in pointer_sample %}
+            <div class="row g-3 mb-3 align-items-center">
+                <div class="col-sm-3">
+                    <label for="variable_{{ pointer.id }}" class="form-label">{{ pointer.name }}</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="variable_{{ pointer.id }}"
+                           value="{{ pointer.value }}">
+                </div>
+            </div>
+        {% endfor %}
+    </form>
+
 <form action="/savefile" style="max-width: 450px; margin: auto; line-height:40px">
     <div class="container" style="visibility: {{ visibility1 }}">
         <div id="con1">
@@ -172,10 +186,6 @@
             <input type="text" name="variable20">
         </div>
     </div>
-
-    {% for pointer in pointers %}
-    <p>{{pointer}} name!</p>
-    {% endfor %}
 
     <input type="text" name="file_name" placeholder="Введите имя файла">
     <button type="submit" class="btn btn-primary">Отправить</button>

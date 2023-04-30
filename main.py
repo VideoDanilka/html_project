@@ -156,6 +156,10 @@ def save():
     else:
         visibility20 = 'hidden'
 
+    pointer_sample = [
+        {'name': 'ФИО', 'value': 'Вася Пупкин', 'id': '1'},
+        {'name': 'дата рождения', 'value': 'из базы!!!', 'id': '2'}
+    ]
     return render_template('form2.html', pointer1=pointer1, visibility1=visibility1,
                            pointer2=pointer2, visibility2=visibility2,
                            pointer3=pointer3, visibility3=visibility3,
@@ -176,7 +180,7 @@ def save():
                            pointer18=pointer18, visibility18=visibility18,
                            pointer19=pointer19, visibility19=visibility19,
                            pointer20=pointer20, visibility20=visibility20,
-                           pointers=pointers)
+                           pointers=pointers, pointer_sample=pointer_sample)
     # Обрати внимание, я передал в шаблон ВЕСЬ список, и посмотри, как я его вывел в шаблоне.
     # Подумай, как переделать код, чтобы не было вот этой копипасты. Ты сам то не задумывался, что это как-то неправильно?
     # В шаблоне могут быть и циклы, и условия, и все что угодно.
@@ -184,10 +188,6 @@ def save():
 
     # Данные в полях input следует предзаполнить из таблицы в базе!!!
     # список pointers лучше сделать вот такой структуры:
-    pointer_sample = [
-        {'name': 'ФИО', 'value': 'Вася Пупкин'},
-        {'name': 'дата рождения', 'value': 'из базы!!!'}
-    ]
 
 
 @app.route('/savefile', methods=['GET'])
